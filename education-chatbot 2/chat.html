@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat with NaiveLearner AI</title>
+    <link rel="stylesheet" href="chat-styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="chat-container">
+        <header class="chat-header">
+            <div class="header-left">
+                <button class="back-button" onclick="window.location.href='index.html'">
+                    ← Back to Home
+                </button>
+                <div class="chat-info">
+                    <div class="ai-avatar"></div>
+                    <div class="ai-details">
+                        <h2>NaiveLearner AI</h2>
+                        <span class="status">Online • Ready to help</span>
+                    </div>
+                </div>
+            </div>
+            <div class="header-right">
+                <button class="settings-button" onclick="toggleSettings()">⚙️</button>
+                <button class="clear-button" onclick="clearChat()">🗑️</button>
+            </div>
+        </header>
+
+        <div class="chat-main">
+            <div class="chat-messages" id="chat-messages">
+                <div class="message ai-message welcome-message">
+                    <div class="message-avatar">🤖</div>
+                    <div class="message-content">
+                        <div class="message-text">
+                            <h3>Welcome to NaiveLearner! 👋</h3>
+                            <p>I'm your AI learning assistant, ready to help you explore any topic you're curious about. Whether you want to:</p>
+                            <ul>
+                                <li>📚 Learn new concepts</li>
+                                <li>🧮 Solve math problems</li>
+                                <li>🔬 Understand science</li>
+                                <li>💻 Learn programming</li>
+                                <li>📖 Explore literature</li>
+                                <li>🌍 Discover history</li>
+                            </ul>
+                            <p>Just ask me anything! What would you like to learn about today?</p>
+                        </div>
+                        <div class="message-time">Just now</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="quick-suggestions">
+                <div class="suggestions-title">Quick Start:</div>
+                <div class="suggestion-buttons">
+                    <button class="suggestion-btn" onclick="sendQuickMessage('Explain quantum physics in simple terms')">
+                        🔬 Quantum Physics
+                    </button>
+                    <button class="suggestion-btn" onclick="sendQuickMessage('Help me with calculus derivatives')">
+                        📊 Calculus Help
+                    </button>
+                    <button class="suggestion-btn" onclick="sendQuickMessage('Teach me Python programming')">
+                        💻 Learn Python
+                    </button>
+                    <button class="suggestion-btn" onclick="sendQuickMessage('Explain the causes of World War II')">
+                        🌍 History
+                    </button>
+                </div>
+            </div>
+
+            <div class="chat-input-container">
+                <div class="chat-input">
+                    <input 
+                        type="text" 
+                        id="message-input" 
+                        placeholder="Ask me anything about any subject..." 
+                        onkeypress="handleKeyPress(event)"
+                        autocomplete="off"
+                    >
+                    <button class="send-button" onclick="sendMessage()" id="send-button">
+                        <span class="send-icon">➤</span>
+                    </button>
+                </div>
+                <div class="input-footer">
+                    <span class="typing-indicator" id="typing-indicator" style="display: none;">
+                        NaiveLearner is typing...
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Settings Panel -->
+    <div class="settings-overlay" id="settings-overlay" onclick="toggleSettings()"></div>
+    <div class="settings-panel" id="settings-panel">
+        <div class="settings-content">
+            <div class="settings-header">
+                <h3>Chat Settings</h3>
+                <button class="settings-close-btn" onclick="toggleSettings()">×</button>
+            </div>
+            
+            <div class="settings-grid">
+                <div class="setting-group">
+                    <div class="setting-item">
+                        <label for="learning-level">Learning Level:</label>
+                        <select id="learning-level">
+                            <option value="beginner">Beginner - Simple explanations</option>
+                            <option value="intermediate" selected>Intermediate - Balanced detail</option>
+                            <option value="advanced">Advanced - Technical depth</option>
+                        </select>
+                    </div>
+                    
+                    <div class="setting-item">
+                        <label for="response-style">Response Style:</label>
+                        <select id="response-style">
+                            <option value="detailed" selected>Detailed Explanations</option>
+                            <option value="concise">Concise Answers</option>
+                            <option value="examples">Rich with Examples</option>
+                            <option value="interactive">Interactive Learning</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="setting-group">
+                    <div class="setting-item">
+                        <label for="subject-focus">Subject Focus:</label>
+                        <select id="subject-focus">
+                            <option value="general" selected>General Learning</option>
+                            <option value="math">Mathematics</option>
+                            <option value="science">Science</option>
+                            <option value="programming">Programming</option>
+                            <option value="language">Language Arts</option>
+                            <option value="history">History</option>
+                        </select>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="show-steps" checked>
+                        <label for="show-steps">Show step-by-step solutions</label>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="include-examples" checked>
+                        <label for="include-examples">Include practical examples</label>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="follow-up-questions">
+                        <label for="follow-up-questions">Suggest follow-up questions</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="settings-actions">
+                <button class="reset-settings" onclick="resetSettings()">Reset to Default</button>
+                <button class="close-settings" onclick="toggleSettings()">Save & Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="chat-script.js"></script>
+</body>
+</html> 
